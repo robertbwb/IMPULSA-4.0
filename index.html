@@ -36,7 +36,6 @@
         .header-left {
             display: flex;
             align-items: center;
-            position: relative;
             z-index: 102;
         }
 
@@ -61,22 +60,27 @@
             transition: 0.3s;
         }
 
-        /* Título Principal Centralizado */
-        .title-container {
+        /* Contenedor del Banner Centralizado */
+        .banner-container {
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            width: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 40%; /* Espacio seguro para que no choque con los costados */
             pointer-events: none;
         }
 
-        .title {
-            color: #1a1a1a;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -0.5px;
+        .project-banner {
+            max-height: 60px; /* Tamaño ideal para que no sature la barra */
+            width: auto;
+            object-fit: contain;
+            /* Tecnologías para mejorar el renderizado y nitidez de la imagen en navegadores */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         /* Enlace Externo a la Derecha */
@@ -213,11 +217,11 @@
             margin-bottom: 10px;
         }
 
-        /* Ajustes de pantalla */
+        /* Ajustes de pantalla responsiva */
         @media (max-width: 768px) {
-            .title { font-size: 1.2rem; }
-            .title-container { width: 60%; }
-            .external-link-btn span { display: none; } /* Oculta texto en móviles, mantiene el ícono */
+            .banner-container { width: 50%; }
+            .project-banner { max-height: 45px; }
+            .external-link-btn span { display: none; }
         }
     </style>
 </head>
@@ -225,7 +229,6 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -235,20 +238,18 @@
             </button>
         </div>
 
-        <div class="title-container">
-            <h1 class="title">IMPULSA 4.0</h1>
+        <div class="banner-container">
+            <img src="Banner_Impulsa4.0_1.png" alt="Banner IMPULSA 4.0" class="project-banner">
         </div>
 
         <div class="header-right">
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
-                <!-- Icono SVG de enlace web oficial -->
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 <span>Sitio Web Oficial</span>
             </a>
         </div>
     </header>
 
-    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
@@ -261,12 +262,9 @@
         </div>
     </nav>
 
-    <!-- Visualizador de Contenidos -->
     <main class="main-content">
-        <!-- Power BI Activo por defecto -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiMDNmNjcxODYtNTBiZC00ZWI5LTk0NmMtMjIyNzRhYzcwYzVjIiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true"></iframe>
         
-        <!-- Vistas previas para las otras dos secciones -->
         <div id="panel-actividades" class="placeholder-content">
             <h2>📅 Planificación y Actividades</h2>
             <p>Módulo de seguimiento en desarrollo. Aquí se integrará el calendario del proyecto y los próximos hitos de la agenda.</p>
@@ -285,18 +283,14 @@
         }
 
         function switchPanel(id, element) {
-            // Oculta todo el contenido actual
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.placeholder-content').forEach(d => d.classList.remove('active'));
             
-            // Muestra la sección seleccionada
             document.getElementById(id).classList.add('active');
             
-            // Cambia el estado activo en el menú lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             element.classList.add('active');
 
-            // Cierra el menú de forma automática tras seleccionar
             toggleMenu();
         }
     </script>
