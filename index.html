@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMPULSA 4.0 - Panel de Control Integrado</title>
+    <title>IMPULSA 4.0 - Panel de Control</title>
     <style>
         /* Estilos Base */
         body, html {
@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
             flex-direction: column;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             overflow: hidden;
         }
 
@@ -25,7 +25,7 @@
             align-items: center;
             justify-content: space-between;
             height: 80px;
-            border-bottom: 2px solid #e9ecef;
+            border-bottom: 2px solid #f1f3f5;
             position: relative;
             z-index: 100;
             flex-shrink: 0;
@@ -36,10 +36,11 @@
         .header-left {
             display: flex;
             align-items: center;
-            height: 100%;
+            position: relative;
+            z-index: 102;
         }
 
-        /* Botón de Menú Hamburguesa moderno */
+        /* Botón de Menú Hamburguesa */
         .menu-btn {
             background: none;
             border: none;
@@ -50,39 +51,60 @@
             justify-content: space-around;
             height: 24px;
             width: 30px;
-            z-index: 101;
-            margin-right: 15px;
         }
 
         .menu-btn span {
             width: 100%;
             height: 3px;
-            background-color: #495057;
+            background-color: #343a40;
             border-radius: 2px;
             transition: 0.3s;
         }
 
-        /* Contenedor del Título */
+        /* Título Principal Centralizado */
         .title-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #6c757d;
-            font-weight: 700;
-            margin: 0 0 2px 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 50%;
+            pointer-events: none;
         }
 
         .title {
-            color: #212529;
-            font-size: 1.35rem;
+            color: #1a1a1a;
+            font-size: 1.6rem;
             font-weight: 700;
             margin: 0;
-            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        /* Enlace Externo a la Derecha */
+        .header-right {
+            display: flex;
+            align-items: center;
+            z-index: 102;
+        }
+
+        .external-link-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f8f9fa;
+            color: #495057;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #dee2e6;
+            transition: all 0.2s ease;
+        }
+
+        .external-link-btn:hover {
+            background-color: #e9ecef;
+            color: #1a73e8;
+            border-color: #ced4da;
         }
 
         /* --- Menú Lateral (Sidebar) --- */
@@ -104,35 +126,24 @@
             left: 0;
         }
 
-        .sidebar-section-title {
-            padding: 10px 25px;
-            font-size: 0.75rem;
-            color: #adb5bd;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
         .sidebar-item {
-            padding: 14px 25px;
-            font-size: 0.95rem;
+            padding: 16px 25px;
+            font-size: 1rem;
             color: #495057;
             cursor: pointer;
             border-left: 4px solid transparent;
             transition: 0.2s;
             font-weight: 500;
-            display: flex;
-            align-items: center;
         }
 
         .sidebar-item:hover {
             background-color: #f8f9fa;
-            color: #0056b3;
-            border-left: 4px solid #0056b3;
+            color: #1a73e8;
+            border-left: 4px solid #1a73e8;
         }
 
         .sidebar-item.active {
-            background-color: #e8f0fe;
+            background-color: #f1f3f5;
             color: #1a73e8;
             border-left: 4px solid #1a73e8;
             font-weight: 600;
@@ -146,8 +157,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(1px);
             z-index: 80;
         }
 
@@ -155,33 +166,15 @@
             display: block;
         }
 
-        /* Redes Sociales / Links de Utilidad */
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .status-badge {
-            background-color: #e6fcf5;
-            color: #0ca678;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid #c3fae8;
-        }
-
-        /* --- Contenedor Principal para Reportería --- */
+        /* --- Contenedor de Pantallas --- */
         .main-content {
             flex: 1;
             width: 100%;
             display: flex;
-            background-color: #f1f3f5;
+            background-color: #ffffff;
             position: relative;
         }
 
-        /* Configuración del Iframe de Power BI al 100% util */
         iframe {
             width: 100%;
             height: 100%;
@@ -196,7 +189,7 @@
             display: block;
         }
 
-        /* Vista alternativa para secciones aún no configuradas */
+        /* Estilo para los módulos Beta en desarrollo */
         .placeholder-content {
             display: none;
             flex-direction: column;
@@ -206,18 +199,25 @@
             height: 100%;
             color: #6c757d;
             text-align: center;
-            padding: 20px;
+            padding: 40px;
             box-sizing: border-box;
+            background-color: #fafafa;
         }
+        
         .placeholder-content.active {
             display: flex;
         }
 
-        /* Responsive */
+        .placeholder-content h2 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        /* Ajustes de pantalla */
         @media (max-width: 768px) {
-            .status-badge { display: none; }
-            .title { font-size: 1.1rem; }
-            .header { height: 70px; }
+            .title { font-size: 1.2rem; }
+            .title-container { width: 60%; }
+            .external-link-btn span { display: none; } /* Oculta texto en móviles, mantiene el ícono */
         }
     </style>
 </head>
@@ -225,58 +225,56 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
+    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
-            <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <div class="title-container">
-                <p class="project-tag">Seguimiento Interno</p>
-                <h1 class="title">Proyecto IMPULSA 4.0</h1>
-            </div>
+        </div>
+
+        <div class="title-container">
+            <h1 class="title">IMPULSA 4.0</h1>
         </div>
 
         <div class="header-right">
-            <span class="status-badge">● Ejecución Activa</span>
+            <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
+                <!-- Icono SVG de enlace web oficial -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Sitio Web Oficial</span>
+            </a>
         </div>
     </header>
 
+    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
-        <div class="sidebar-section-title">Controle de Mando</div>
-        <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this, true)">
+        <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
         </div>
-        
-        <div class="sidebar-section-title">Módulos Internos</div>
-        <div class="sidebar-item" onclick="switchPanel('panel-financiero', this, false)">
-            💰 Avance Financiero
+        <div class="sidebar-item" onclick="switchPanel('panel-actividades', this)">
+            📅 Actividades
         </div>
-        <div class="sidebar-item" onclick="switchPanel('panel-hitos', this, false)">
-            🎯 Hitos y Entregables
-        </div>
-        <div class="sidebar-item" onclick="switchPanel('panel-galeria', this, false)">
-            🖼️ Galería y Avances
+        <div class="sidebar-item" onclick="switchPanel('panel-registros', this)">
+            📁 Registros IMPULSA 4.0
         </div>
     </nav>
 
+    <!-- Visualizador de Contenidos -->
     <main class="main-content">
+        <!-- Power BI Activo por defecto -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiMDNmNjcxODYtNTBiZC00ZWI5LTk0NmMtMjIyNzRhYzcwYzVjIiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true"></iframe>
         
-        <div id="panel-financiero" class="placeholder-content">
-            <h2>💰 Módulo de Avance Financiero</h2>
-            <p>Espacio reservado para gráficos presupuestarios, flujos de caja o un segundo reporte de Power BI especializado.</p>
+        <!-- Vistas previas para las otras dos secciones -->
+        <div id="panel-actividades" class="placeholder-content">
+            <h2>📅 Planificación y Actividades</h2>
+            <p>Módulo de seguimiento en desarrollo. Aquí se integrará el calendario del proyecto y los próximos hitos de la agenda.</p>
         </div>
 
-        <div id="panel-hitos" class="placeholder-content">
-            <h2>🎯 Hitos y Entregables del Proyecto</h2>
-            <p>Aquí podrás incrustar una carta Gantt dinámica, un tablero Kanban o una lista de control de objetivos cumplidos.</p>
-        </div>
-
-        <div id="panel-galeria" class="placeholder-content">
-            <h2>🖼️ Galería de Imágenes y Evidencias</h2>
-            <p>Sección para cargar registros fotográficos de las actividades, visitas a terreno y avances técnicos de IMPULSA 4.0.</p>
+        <div id="panel-registros" class="placeholder-content">
+            <h2>📁 Banco de Registros</h2>
+            <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
         </div>
     </main>
 
@@ -286,19 +284,19 @@
             document.getElementById('overlay').classList.toggle('active');
         }
 
-        function switchPanel(id, element, isIframe) {
-            // Desactivar todos los elementos visuales activos (iframes y divs de texto)
+        function switchPanel(id, element) {
+            // Oculta todo el contenido actual
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.placeholder-content').forEach(d => d.classList.remove('active'));
             
-            // Activar el panel seleccionado según su ID
+            // Muestra la sección seleccionada
             document.getElementById(id).classList.add('active');
             
-            // Actualizar estilo en el menú lateral
+            // Cambia el estado activo en el menú lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             element.classList.add('active');
 
-            // Cerrar menú
+            // Cierra el menú de forma automática tras seleccionar
             toggleMenu();
         }
     </script>
