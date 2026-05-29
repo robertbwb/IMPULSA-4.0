@@ -275,15 +275,13 @@
 
     <!-- Visualizador de Contenidos -->
     <main class="main-content">
-        <!-- Power BI Activo por defecto -->
+        <!-- Power BI: Dashboard General (Activo por defecto) -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiMDNmNjcxODYtNTBiZC00ZWI5LTk0NmMtMjIyNzRhYzcwYzVjIiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true"></iframe>
         
-        <!-- Vistas previas para las otras secciones -->
-        <div id="panel-actividades" class="placeholder-content">
-            <h2>📅 Planificación y Actividades</h2>
-            <p>Módulo de seguimiento en desarrollo. Aquí se integrará el calendario del proyecto y los próximos hitos de la agenda.</p>
-        </div>
+        <!-- Power BI: Planificación y Actividades -->
+        <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiYzRiYTE5MTAtNjM5ZS00NTZkLWI1NWItMzRmYTRlMGNhZGI3IiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
+        <!-- Vista previa para la sección restante -->
         <div id="panel-registros" class="placeholder-content">
             <h2>📁 Banco de Registros</h2>
             <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
@@ -297,11 +295,14 @@
         }
 
         function switchPanel(id, element) {
+            // Oculta todos los elementos visuales (iframes y divs de marcador de posición)
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.placeholder-content').forEach(d => d.classList.remove('active'));
             
+            // Muestra la sección seleccionada mediante su ID correspondiente
             document.getElementById(id).classList.add('active');
             
+            // Actualiza los estados visuales en la barra de navegación lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             element.classList.add('active');
 
