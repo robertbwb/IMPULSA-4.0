@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -225,13 +226,13 @@
             margin-bottom: 10px;
         }
 
-        /* --- Layout Inferior (Footer Adaptado a 811x88 a la Derecha) --- */
+        /* --- Layout Inferior (Footer Adaptado a 211x88 a la Derecha) --- */
         .footer {
             background-color: #ffffff; 
-            height: auto; /* Se amolda al alto exacto de la imagen */
+            height: auto; 
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* Posicionado a la derecha */
+            justify-content: flex-end; /* Posicionado a la derecha solicitado */
             border-top: 1px solid #e9ecef; 
             flex-shrink: 0;
             box-sizing: border-box;
@@ -240,25 +241,22 @@
         }
 
         .bottom-banner {
-            width: 211px;  /* Ancho estricto solicitado */
+            width: 211px;  /* Nuevo ancho estricto solicitado */
             height: 88px;  /* Alto estricto solicitado */
-            object-fit: contain;
+            object-fit: contain; /* Evita deformaciones y maximiza la definición del contenido */
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
 
-        /* Ajustes responsivos para pantallas pequeñas/móviles para que no se corte */
-        @media (max-width: 850px) {
-            .bottom-banner {
-                width: 100%; /* Permite encogerse proporcionalmente si la pantalla es más angosta que 811px */
-                height: auto;
-            }
-            .footer { padding: 4px 15px; }
-        }
-
+        /* Ajustes responsivos para pantallas pequeñas */
         @media (max-width: 768px) {
             .banner-container { width: 50%; }
             .project-banner { max-height: 40px; }
+            .bottom-banner {
+                width: 150px; /* Reducción proporcional en móviles para evitar cortes */
+                height: 63px;
+            }
+            .footer { padding: 4px 15px; }
         }
     </style>
 </head>
@@ -266,6 +264,7 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
+    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -275,10 +274,12 @@
             </button>
         </div>
 
+        <!-- Banner Centralizado -->
         <div class="banner-container">
             <img src="Banner_Impulsa4.0_1.png" alt="Banner IMPULSA 4.0" class="project-banner">
         </div>
 
+        <!-- Enlace Web con Ícono🔗 y texto abajo -->
         <div class="header-right">
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
                 <span class="link-icon">🔗</span>
@@ -287,6 +288,7 @@
         </div>
     </header>
 
+    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
@@ -299,17 +301,22 @@
         </div>
     </nav>
 
+    <!-- Visualizador de Contenidos -->
     <main class="main-content">
+        <!-- Power BI: Dashboard General (Activo por defecto) -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
         
+        <!-- Power BI: Planificación y Actividades -->
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
+        <!-- Vista previa para la sección restante -->
         <div id="panel-registros" class="placeholder-content">
             <h2>📁 Banco de Registros</h2>
             <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
         </div>
     </main>
 
+    <!-- Barra Inferior con Dimensiones Fijas de 211x88 -->
     <footer class="footer">
         <img src="Banner_IMPULSA4.0.png" alt="Información de Cierre IMPULSA 4.0" class="bottom-banner">
     </footer>
