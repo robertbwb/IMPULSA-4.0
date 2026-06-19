@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,7 +20,7 @@ HTML
 
         /* --- Layout Superior (Header) --- */
         .header {
-            background-color: #232C54; 
+            background-color: #232C54; /* Color solicitado */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -56,7 +55,7 @@ HTML
         .menu-btn span {
             width: 100%;
             height: 3px;
-            background-color: #E6E6E6; 
+            background-color: #E6E6E6; /* Color de letras/iconos solicitado */
             border-radius: 2px;
             transition: 0.3s;
         }
@@ -96,7 +95,7 @@ HTML
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #E6E6E6; 
+            color: #E6E6E6; /* Color solicitado */
             transition: transform 0.2s ease, color 0.2s ease;
             cursor: pointer;
         }
@@ -126,7 +125,7 @@ HTML
             top: 0;
             height: 100%;
             width: 280px;
-            background-color: #232C54; 
+            background-color: #232C54; /* Color solicitado */
             box-shadow: 4px 0 15px rgba(0,0,0,0.2);
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 90;
@@ -142,7 +141,7 @@ HTML
         .sidebar-item {
             padding: 16px 25px;
             font-size: 1rem;
-            color: #E6E6E6; 
+            color: #E6E6E6; /* Color solicitado */
             cursor: pointer;
             border-left: 4px solid transparent;
             transition: 0.2s;
@@ -216,7 +215,7 @@ HTML
             box-sizing: border-box;
             background-color: #fafafa;
         }
-        
+
         .placeholder-content.active {
             display: flex;
         }
@@ -226,37 +225,10 @@ HTML
             margin-bottom: 10px;
         }
 
-        /* --- Layout Inferior (Footer Adaptado a 211x88 a la Derecha) --- */
-        .footer {
-            background-color: #ffffff; 
-            height: auto; 
-            display: flex;
-            align-items: center;
-            justify-content: flex-end; /* Posicionado a la derecha solicitado */
-            border-top: 1px solid #e9ecef; 
-            flex-shrink: 0;
-            box-sizing: border-box;
-            padding: 4px 25px; 
-            z-index: 100;
-        }
-
-        .bottom-banner {
-            width: 211px;  /* Nuevo ancho estricto solicitado */
-            height: 44px;  /* Alto estricto solicitado */
-            object-fit: contain; /* Evita deformaciones y maximiza la definición del contenido */
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        /* Ajustes responsivos para pantallas pequeñas */
+        /* Ajustes de pantalla responsiva */
         @media (max-width: 768px) {
             .banner-container { width: 50%; }
             .project-banner { max-height: 40px; }
-            .bottom-banner {
-                width: 150px; /* Reducción proporcional en móviles para evitar cortes */
-                height: 63px;
-            }
-            .footer { padding: 4px 15px; }
         }
     </style>
 </head>
@@ -304,9 +276,11 @@ HTML
     <!-- Visualizador de Contenidos -->
     <main class="main-content">
         <!-- Power BI: Dashboard General (Activo por defecto) -->
+        <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiMDNmNjcxODYtNTBiZC00ZWI5LTk0NmMtMjIyNzRhYzcwYzVjIiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true"></iframe>
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
-        
+
         <!-- Power BI: Planificación y Actividades -->
+        <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiYzRiYTE5MTAtNjM5ZS00NTZkLWI1NWItMzRmYTRlMGNhZGI3IiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
         <!-- Vista previa para la sección restante -->
@@ -316,11 +290,6 @@ HTML
         </div>
     </main>
 
-    <!-- Barra Inferior con Dimensiones Fijas de 211x88 -->
-    <footer class="footer">
-        <img src="Banner_IMPULSA4.0.png" alt="Información de Cierre IMPULSA 4.0" class="bottom-banner">
-    </footer>
-
     <script>
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('active');
@@ -328,11 +297,14 @@ HTML
         }
 
         function switchPanel(id, element) {
+            // Oculta todos los elementos visuales (iframes y divs de marcador de posición)
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.placeholder-content').forEach(d => d.classList.remove('active'));
-            
+
+            // Muestra la sección seleccionada mediante su ID correspondiente
             document.getElementById(id).classList.add('active');
-            
+
+            // Actualiza los estados visuales en la barra de navegación lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             element.classList.add('active');
 
