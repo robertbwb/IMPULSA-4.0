@@ -225,35 +225,36 @@
             margin-bottom: 10px;
         }
 
-        /* --- Layout Inferior (Footer Mejorado) --- */
+        /* --- Layout Inferior (Footer Mini y Compacto) --- */
         .footer {
-            background-color: #ffffff; /* Fondo blanco solicitado */
-            height: 70px;
+            background-color: #ffffff; 
+            height: 45px; /* Altura más pequeña para compactar la imagen */
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Alineación a la izquierda */
-            border-top: 1px solid #dee2e6; /* Línea divisoria sutil sobre el fondo blanco */
+            justify-content: flex-start; 
+            border-top: 1px solid #e9ecef; 
             flex-shrink: 0;
             box-sizing: border-box;
-            padding: 0 25px; /* Margen interno izquierdo y derecho */
+            padding: 0 25px; 
             z-index: 100;
         }
 
         .bottom-banner {
-            max-height: 50px; /* Tamaño controlado para no estirar artificialmente */
+            max-height: 28px; /* Forzamos a la imagen a verse más pequeña para ganar definición técnica */
             width: auto;
             object-fit: contain;
-            /* Forzar al navegador a renderizar con la mayor nitidez y contraste posible */
+            /* Máxima optimización de enfoque para navegadores modernos */
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
+            image-rendering: pixelated;
         }
 
         /* Ajustes de pantalla responsiva */
         @media (max-width: 768px) {
             .banner-container { width: 50%; }
             .project-banner { max-height: 40px; }
-            .footer { height: 55px; padding: 0 15px; }
-            .bottom-banner { max-height: 35px; }
+            .footer { height: 40px; padding: 0 15px; }
+            .bottom-banner { max-height: 22px; }
         }
     </style>
 </head>
