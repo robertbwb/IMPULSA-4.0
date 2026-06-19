@@ -225,10 +225,34 @@
             margin-bottom: 10px;
         }
 
+        /* --- Layout Inferior (Footer) --- */
+        .footer {
+            background-color: #232C54;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 2px solid #19203e;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .bottom-banner {
+            max-height: 50px;
+            width: auto;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
         /* Ajustes de pantalla responsiva */
         @media (max-width: 768px) {
             .banner-container { width: 50%; }
             .project-banner { max-height: 40px; }
+            .footer { height: 55px; }
+            .bottom-banner { max-height: 35px; }
         }
     </style>
 </head>
@@ -236,7 +260,6 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -246,12 +269,10 @@
             </button>
         </div>
 
-        <!-- Banner Centralizado -->
         <div class="banner-container">
             <img src="Banner_Impulsa4.0_1.png" alt="Banner IMPULSA 4.0" class="project-banner">
         </div>
 
-        <!-- Enlace Web con Ícono🔗 y texto abajo -->
         <div class="header-right">
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
                 <span class="link-icon">🔗</span>
@@ -260,7 +281,6 @@
         </div>
     </header>
 
-    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
@@ -273,20 +293,20 @@
         </div>
     </nav>
 
-    <!-- Visualizador de Contenidos -->
     <main class="main-content">
-        <!-- Power BI: Dashboard General (Activo por defecto) -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
         
-        <!-- Power BI: Planificación y Actividades -->
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
-        <!-- Vista previa para la sección restante -->
         <div id="panel-registros" class="placeholder-content">
             <h2>📁 Banco de Registros</h2>
             <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
         </div>
     </main>
+
+    <footer class="footer">
+        <img src="Banner_IMPULSA4.0.png" alt="Información de Cierre IMPULSA 4.0" class="bottom-banner">
+    </footer>
 
     <script>
         function toggleMenu() {
