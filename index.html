@@ -225,35 +225,40 @@
             margin-bottom: 10px;
         }
 
-        /* --- Layout Inferior (Footer del tamaño de la imagen a la Derecha) --- */
+        /* --- Layout Inferior (Footer Adaptado a 811x88 a la Derecha) --- */
         .footer {
             background-color: #ffffff; 
-            height: auto; /* Se adapta dinámicamente al alto de la imagen */
+            height: auto; /* Se amolda al alto exacto de la imagen */
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* Alineado a la derecha solicitado */
+            justify-content: flex-end; /* Posicionado a la derecha */
             border-top: 1px solid #e9ecef; 
             flex-shrink: 0;
             box-sizing: border-box;
-            padding: 6px 25px; /* Padding vertical sutil para contener la imagen de forma exacta */
+            padding: 4px 25px; 
             z-index: 100;
         }
 
         .bottom-banner {
-            max-height: 28px; 
-            width: auto;
+            width: 811px;  /* Ancho estricto solicitado */
+            height: 88px;  /* Alto estricto solicitado */
             object-fit: contain;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            image-rendering: pixelated;
         }
 
-        /* Ajustes de pantalla responsiva */
+        /* Ajustes responsivos para pantallas pequeñas/móviles para que no se corte */
+        @media (max-width: 850px) {
+            .bottom-banner {
+                width: 100%; /* Permite encogerse proporcionalmente si la pantalla es más angosta que 811px */
+                height: auto;
+            }
+            .footer { padding: 4px 15px; }
+        }
+
         @media (max-width: 768px) {
             .banner-container { width: 50%; }
             .project-banner { max-height: 40px; }
-            .footer { padding: 5px 15px; }
-            .bottom-banner { max-height: 22px; }
         }
     </style>
 </head>
