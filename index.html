@@ -20,7 +20,7 @@
 
         /* --- Layout Superior (Header) --- */
         .header {
-            background-color: #232C54; 
+            background-color: #232C54; /* Color solicitado */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -55,7 +55,7 @@
         .menu-btn span {
             width: 100%;
             height: 3px;
-            background-color: #E6E6E6; 
+            background-color: #E6E6E6; /* Color de letras/iconos solicitado */
             border-radius: 2px;
             transition: 0.3s;
         }
@@ -95,7 +95,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #E6E6E6; 
+            color: #E6E6E6; /* Color solicitado */
             transition: transform 0.2s ease, color 0.2s ease;
             cursor: pointer;
         }
@@ -125,7 +125,7 @@
             top: 0;
             height: 100%;
             width: 280px;
-            background-color: #232C54; 
+            background-color: #232C54; /* Color solicitado */
             box-shadow: 4px 0 15px rgba(0,0,0,0.2);
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 90;
@@ -141,7 +141,7 @@
         .sidebar-item {
             padding: 16px 25px;
             font-size: 1rem;
-            color: #E6E6E6; 
+            color: #E6E6E6; /* Color solicitado */
             cursor: pointer;
             border-left: 4px solid transparent;
             transition: 0.2s;
@@ -225,41 +225,10 @@
             margin-bottom: 10px;
         }
 
-        /* --- NUEVO: Banner de Patrocinadores Flotante con Transparencia --- */
-        .floating-sponsors {
-            position: fixed;
-            bottom: 15px; /* Separado del borde inferior */
-            left: 15px;   /* Ubicado abajo a la izquierda */
-            z-index: 150; /* Por encima de los iframes */
-            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con 85% de opacidad (transparente) */
-            backdrop-filter: blur(5px); /* Efecto esmerilado premium en navegadores modernos */
-            padding: 8px 12px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto; /* Permite interactuar con él si es necesario */
-        }
-
-        .floating-sponsors img {
-            width: auto;
-            max-height: 50px; /* Mantiene proporciones sin estirarse artificialmente */
-            object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        /* Ajustes responsivos por si la pantalla es muy pequeña */
+        /* Ajustes de pantalla responsiva */
         @media (max-width: 768px) {
-            .floating-sponsors {
-                bottom: 10px;
-                left: 10px;
-                padding: 6px 8px;
-            }
-            .floating-sponsors img {
-                max-height: 35px;
-            }
+            .banner-container { width: 50%; }
+            .project-banner { max-height: 40px; }
         }
     </style>
 </head>
@@ -267,6 +236,7 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
+    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -276,10 +246,12 @@
             </button>
         </div>
 
+        <!-- Banner Centralizado -->
         <div class="banner-container">
             <img src="Banner_Impulsa4.0_1.png" alt="Banner IMPULSA 4.0" class="project-banner">
         </div>
 
+        <!-- Enlace Web con Ícono🔗 y texto abajo -->
         <div class="header-right">
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
                 <span class="link-icon">🔗</span>
@@ -288,6 +260,7 @@
         </div>
     </header>
 
+    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
@@ -300,20 +273,22 @@
         </div>
     </nav>
 
+    <!-- Visualizador de Contenidos -->
     <main class="main-content">
+        <!-- Power BI: Dashboard General (Activo por defecto) -->
+        <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiMDNmNjcxODYtNTBiZC00ZWI5LTk0NmMtMjIyNzRhYzcwYzVjIiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true"></iframe>
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
 
+        <!-- Power BI: Planificación y Actividades -->
+        <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiYzRiYTE5MTAtNjM5ZS00NTZkLWI1NWItMzRmYTRlMGNhZGI3IiwidCI6IjlkMzA3YWIyLWUzMzItNDNjMy05M2FhLTNlNzI0OGZmZTc3ZCIsImMiOjR9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
+        <!-- Vista previa para la sección restante -->
         <div id="panel-registros" class="placeholder-content">
             <h2>📁 Banco de Registros</h2>
             <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
         </div>
     </main>
-
-    <div class="floating-sponsors">
-        <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0">
-    </div>
 
     <script>
         function toggleMenu() {
@@ -322,11 +297,14 @@
         }
 
         function switchPanel(id, element) {
+            // Oculta todos los elementos visuales (iframes y divs de marcador de posición)
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.placeholder-content').forEach(d => d.classList.remove('active'));
 
+            // Muestra la sección seleccionada mediante su ID correspondiente
             document.getElementById(id).classList.add('active');
 
+            // Actualiza los estados visuales en la barra de navegación lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             element.classList.add('active');
 
