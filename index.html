@@ -82,24 +82,13 @@
             image-rendering: crisp-edges;
         }
 
-        /* Contenedor de la Derecha (Patrocinadores + Link Web) */
+        /* Enlace Externo Vertical (Ícono + Texto "Web") */
         .header-right {
             display: flex;
             align-items: center;
-            gap: 20px; /* Separación elegante entre patrocinadores y enlace web */
             z-index: 102;
         }
 
-        /* Imagen de Patrocinadores en Alta Calidad */
-        .sponsors-banner {
-            max-height: 45px; /* Tamaño optimizado para agrupar píxeles y ganar nitidez */
-            width: auto;
-            object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        /* Enlace Externo Vertical (Ícono + Texto "Web") */
         .external-link-btn {
             display: flex;
             flex-direction: column;
@@ -236,16 +225,41 @@
             margin-bottom: 10px;
         }
 
-        /* Ajustes de pantalla responsiva */
-        @media (max-width: 992px) {
-            .sponsors-banner { max-height: 35px; }
-            .banner-container { width: 30%; }
+        /* --- NUEVO: Banner de Patrocinadores Flotante con Transparencia --- */
+        .floating-sponsors {
+            position: fixed;
+            bottom: 15px; /* Separado del borde inferior */
+            left: 15px;   /* Ubicado abajo a la izquierda */
+            z-index: 150; /* Por encima de los iframes */
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con 85% de opacidad (transparente) */
+            backdrop-filter: blur(5px); /* Efecto esmerilado premium en navegadores modernos */
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto; /* Permite interactuar con él si es necesario */
         }
 
+        .floating-sponsors img {
+            width: auto;
+            max-height: 50px; /* Mantiene proporciones sin estirarse artificialmente */
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* Ajustes responsivos por si la pantalla es muy pequeña */
         @media (max-width: 768px) {
-            .banner-container { display: none; } /* Oculta banner central en pantallas muy chicas para evitar colisiones */
-            .sponsors-banner { max-height: 30px; }
-            .header-right { gap: 10px; }
+            .floating-sponsors {
+                bottom: 10px;
+                left: 10px;
+                padding: 6px 8px;
+            }
+            .floating-sponsors img {
+                max-height: 35px;
+            }
         }
     </style>
 </head>
@@ -267,8 +281,6 @@
         </div>
 
         <div class="header-right">
-            <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0" class="sponsors-banner">
-            
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
                 <span class="link-icon">🔗</span>
                 <span class="link-text">web</span>
@@ -298,6 +310,10 @@
             <p>Módulo multimedia en desarrollo. Destinado al almacenamiento ordenado de registros fotográficos, videos y reportes finales.</p>
         </div>
     </main>
+
+    <div class="floating-sponsors">
+        <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0">
+    </div>
 
     <script>
         function toggleMenu() {
