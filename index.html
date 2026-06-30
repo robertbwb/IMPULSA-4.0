@@ -271,7 +271,6 @@
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
             object-fit: cover;
-            /* FIX 2: Suavizado de rendering para optimizar imágenes redimensionadas */
             image-rendering: auto;
         }
 
@@ -391,19 +390,19 @@
     </header>
 
     <nav class="sidebar" id="sidebar">
-        <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
+        <div class="sidebar-item" id="menu-dashboard-general" onclick="switchPanel('dashboard-general')">
             📊 Dashboard General
         </div>
-        <div class="sidebar-item" onclick="switchPanel('panel-actividades', this)">
+        <div class="sidebar-item" id="menu-panel-actividades" onclick="switchPanel('panel-actividades')">
             📅 Calendario Actividades
         </div>
-        <div class="sidebar-item" onclick="switchPanel('panel-registros', this)">
+        <div class="sidebar-item" id="menu-panel-registros" onclick="switchPanel('panel-registros')">
             📸 Registros IMPULSA 4.0
         </div>
     </nav>
 
     <main class="main-content">
-        <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
+        <iframe id="dashboard-general" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
 
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
@@ -416,15 +415,27 @@
                     <div class="carousel-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
                         <div class="carousel-slides">
-                            <img src="img/Feria_Ciencias_Liceo_Likan_Antai/Likan_Antai_Ciencias_1.jpg" alt="Feria de Ciencias 1" class="slide active">
-                            <img src="img/Feria_Ciencias_Liceo_Likan_Antai/Likan_Antai_Ciencias_2.jpg" alt="Feria de Ciencias 2" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_1.jpg" alt="Trayectorias 1" class="slide active">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_2.jpg" alt="Trayectorias 2" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_3.jpg" alt="Trayectorias 3" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_4.jpg" alt="Trayectorias 4" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_5.jpg" alt="Trayectorias 5" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_6.jpg" alt="Trayectorias 6" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_7.jpg" alt="Trayectorias 7" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_8.jpg" alt="Trayectorias 8" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_9.jpg" alt="Trayectorias 9" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_10.jpg" alt="Trayectorias 10" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_11.jpg" alt="Trayectorias 11" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_12.jpg" alt="Trayectorias 12" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_13.jpg" alt="Trayectorias 13" class="slide">
+                            <img src="img/Trayectorias_SigloXXI_29.04.2026/Trayectorias_14.jpg" alt="Trayectorias 14" class="slide">
                         </div>
                         <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
                     </div>
                     <div class="event-info">
-                        <span class="event-tag">San Pedro de Atacama</span>
-                        <h3>Feria de Ciencias en Liceo Likan Antai</h3>
-                        <p>Muestra y exposición científica interactiva desarrollada junto a la comunidad estudiantil del Liceo Likan Antai.</p>
+                        <span class="event-tag">Antofagasta - 29.04.2026</span>
+                        <h3>Lanzamiento IMPULSA trayectorias para el Siglo XXI</h3>
+                        <p>Hito de inicio del programa enfocado en el desarrollo de competencias claves para los desafíos laborales del futuro.</p>
                     </div>
                 </div>
 
@@ -444,6 +455,65 @@
                         <span class="event-tag">Calama y Taltal</span>
                         <h3>Habilitación de 'Aulas IMPULSA 4.0'</h3>
                         <p>Proceso de acondicionamiento de infraestructura tecnológica avanzada en las comunas del programa.</p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="carousel-wrapper">
+                        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                        <div class="carousel-slides">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_1.jpg" alt="Nuevos Perfiles 1" class="slide active">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_2.jpg" alt="Nuevos Perfiles 2" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_3.jpg" alt="Nuevos Perfiles 3" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_4.jpg" alt="Nuevos Perfiles 4" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_5.jpg" alt="Nuevos Perfiles 5" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_6.jpg" alt="Nuevos Perfiles 6" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_7.jpg" alt="Nuevos Perfiles 7" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_8.jpg" alt="Nuevos Perfiles 8" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_9.jpg" alt="Nuevos Perfiles 9" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_10.jpg" alt="Nuevos Perfiles 10" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_11.jpg" alt="Nuevos Perfiles 11" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_12.jpg" alt="Nuevos Perfiles 12" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_13.jpg" alt="Nuevos Perfiles 13" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_14.jpg" alt="Nuevos Perfiles 14" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_15.jpg" alt="Nuevos Perfiles 15" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_16.jpg" alt="Nuevos Perfiles 16" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_17.jpg" alt="Nuevos Perfiles 17" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_18.jpg" alt="Nuevos Perfiles 18" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_19.jpg" alt="Nuevos Perfiles 19" class="slide">
+                            <img src="img/Fiesta_Nuevos_Perfiles_01.07.2025/Nuevos_Perfiles_20.jpg" alt="Nuevos Perfiles 20" class="slide">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+                    </div>
+                    <div class="event-info">
+                        <span class="event-tag">Antofagasta y Calama - 01.07.2025</span>
+                        <h3>Seminario: Fiesta Nuevos Perfiles Laborales 4.0</h3>
+                        <p>Encuentro en Colegios Don Bosco abordando la actualización de perfiles técnicos según la demanda industrial tecnológica.</p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="carousel-wrapper">
+                        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                        <div class="carousel-slides">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_1.jpg" alt="Seminario 1" class="slide active">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_2.jpg" alt="Seminario 2" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_3.jpg" alt="Seminario 3" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_4.jpg" alt="Seminario 4" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_5.jpg" alt="Seminario 5" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_6.jpg" alt="Seminario 6" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_7.jpg" alt="Seminario 7" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_8.jpg" alt="Seminario 8" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_9.jpg" alt="Seminario 9" class="slide">
+                            <img src="img/Seminario_Nuevos_Perfiles_26.03.2025/Seminario_Nuevos_10.jpg" alt="Seminario 10" class="slide">
+                        </div>
+                        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+                    </div>
+                    <div class="event-info">
+                        <span class="event-tag">Antofagasta - 26.03.2025</span>
+                        <h3>Seminario: Nuevos Perfiles Laborales 4.0</h3>
+                        <p>Discusión estratégica sobre la brecha de capital humano y las competencias necesarias para la industria minera regional.</p>
                     </div>
                 </div>
 
@@ -484,6 +554,30 @@
                     </div>
                 </div>
 
+                <div class="event-card">
+                    <div class="carousel-wrapper">
+                        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                        <div class="carousel-slides">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_1.jpg" alt="Firma 1" class="slide active">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_2.jpg" alt="Firma 2" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_3.jpg" alt="Firma 3" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_4.jpg" alt="Firma 4" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_5.jpg" alt="Firma 5" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_6.jpg" alt="Firma 6" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_7.jpg" alt="Firma 7" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_8.jpg" alt="Firma 8" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_9.jpg" alt="Firma 9" class="slide">
+                            <img src="img/Firma_Liceos_22.08.2024/Firma_Liceos_10.jpg" alt="Firma 10" class="slide">
+                        </div>
+                        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+                    </div>
+                    <div class="event-info">
+                        <span class="event-tag">Antofagasta - 22.08.2024</span>
+                        <h3>Firma Liceos IMPULSA 4.0</h3>
+                        <p>Hito de formalización de la alianza entre instituciones educativas y el programa para la implementación del modelo de alternancia.</p>
+                    </div>
+                </div>
+
             </div>
 
             <div class="gallery-footer-sponsors">
@@ -493,21 +587,51 @@
     </main>
 
     <script>
+        // Función para cargar el panel activo desde localStorage al cargar la página
+        window.onload = function() {
+            const activePanelId = localStorage.getItem('activePanelId');
+            if (activePanelId) {
+                // Si hay un panel guardado, cambiar a él sin animación para que sea inmediato
+                switchPanel(activePanelId, false);
+            } else {
+                // Si no hay panel guardado, cargar el Dashboard por defecto
+                switchPanel('dashboard-general', false);
+            }
+        };
+
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('active');
             document.getElementById('overlay').classList.toggle('active');
         }
 
-        function switchPanel(id, element) {
+        // Modificada para guardar el estado y permitir carga inmediata sin cerrar menú
+        function switchPanel(id, closeMenu = true) {
+            // Oculta todos los elementos visuales
             document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
             document.querySelectorAll('.gallery-container').forEach(d => d.classList.remove('active'));
-
-            document.getElementById(id).classList.add('active');
-
+            
+            // Remueve estados activos de la barra de navegación lateral
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-            element.classList.add('active');
 
-            toggleMenu();
+            // Muestra la sección seleccionada y activa el item del menú correspondiente
+            const targetPanel = document.getElementById(id);
+            const targetMenuItem = document.getElementById('menu-' + id);
+
+            if (targetPanel) targetPanel.classList.add('active');
+            if (targetMenuItem) targetMenuItem.classList.add('active');
+
+            // Guardar el ID del panel activo en localStorage
+            localStorage.setItem('activePanelId', id);
+
+            if (closeMenu) {
+                // Solo cerramos el menú si se hace click explícitamente en un item, no al cargar/actualizar
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                if (sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
+            }
         }
 
         /* Lógica independiente de carruseles */
@@ -516,6 +640,9 @@
             const slides = wrapper.querySelectorAll('.slide');
             let activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
             
+            // Asegurarse de que hay slides antes de continuar
+            if (activeIndex === -1) return;
+
             slides[activeIndex].classList.remove('active');
             activeIndex = (activeIndex + direction + slides.length) % slides.length;
             slides[activeIndex].classList.add('active');
