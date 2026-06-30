@@ -210,10 +210,9 @@
             box-sizing: border-box;
             padding: 30px;
             background-color: #f8f9fa;
-            overflow-y: auto; /* Permite el scroll interno */
+            overflow-y: auto;
         }
 
-        /* FIX 1: Cambiado a flex dinámico para forzar el comportamiento de scroll */
         .gallery-container.active {
             display: flex;
             flex-direction: column;
@@ -271,12 +270,22 @@
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
             object-fit: cover;
-            /* FIX 2: Suavizado de rendering para optimizar imágenes redimensionadas */
             image-rendering: auto;
         }
 
         .slide.active {
             opacity: 1;
+        }
+
+        /* OPTIMIZACIÓN FERIA: Forzar rendering nativo sin deformación ni recortes agresivos */
+        .feria-wrapper {
+            background: linear-gradient(145deg, #13172c, #232C54);
+        }
+        
+        .feria-wrapper .slide {
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
         }
 
         /* Controles del Carrusel (Flechas) */
@@ -337,24 +346,25 @@
             line-height: 1.4;
         }
 
-        /* --- Contenedor del Banner de Patrocinadores Integrado --- */
+        /* --- OPTIMIZACIÓN BANNER: Contenedor con Scroll Horizontal y dimensiones fijas --- */
         .gallery-footer-sponsors {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: auto; 
             padding: 30px 0 10px 0;
-            margin-top: auto; /* Empuja el banner al fondo real si hay poco contenido */
+            margin-top: auto; 
             border-top: 1px solid #dee2e6;
             flex-shrink: 0;
+            box-sizing: border-box;
         }
 
-        .gallery-footer-sponsors img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
+        .sponsors-fixed-banner {
+            width: 3119px !important;
+            height: 334px !important;
+            min-width: 3119px;
+            min-height: 334px;
+            display: block;
+            margin: 0 auto;
+            object-fit: fill;
         }
 
         /* Ajustes de pantalla responsiva */
@@ -413,7 +423,7 @@
             <div class="events-grid">
                 
                 <div class="event-card">
-                    <div class="carousel-wrapper">
+                    <div class="carousel-wrapper feria-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
                         <div class="carousel-slides">
                             <img src="img/Feria_Ciencias_Liceo_Likan_Antai/Likan_Antai_Ciencias_1.jpg" alt="Feria de Ciencias 1" class="slide active">
@@ -487,7 +497,7 @@
             </div>
 
             <div class="gallery-footer-sponsors">
-                <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0">
+                <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0" class="sponsors-fixed-banner">
             </div>
         </div>
     </main>
