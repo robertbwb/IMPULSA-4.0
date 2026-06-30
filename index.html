@@ -185,6 +185,7 @@
             display: flex;
             background-color: #ffffff;
             position: relative;
+            overflow: hidden;
         }
 
         iframe {
@@ -209,11 +210,13 @@
             box-sizing: border-box;
             padding: 30px;
             background-color: #f8f9fa;
-            overflow-y: auto;
+            overflow-y: auto; /* Permite el scroll interno */
         }
 
+        /* FIX 1: Cambiado a flex dinámico para forzar el comportamiento de scroll */
         .gallery-container.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .gallery-title {
@@ -223,6 +226,7 @@
             font-size: 1.8rem;
             border-bottom: 2px solid #dee2e6;
             padding-bottom: 10px;
+            flex-shrink: 0;
         }
 
         /* Grid para las tarjetas de eventos */
@@ -267,6 +271,8 @@
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
             object-fit: cover;
+            /* FIX 2: Suavizado de rendering para optimizar imágenes redimensionadas */
+            image-rendering: auto;
         }
 
         .slide.active {
@@ -331,20 +337,21 @@
             line-height: 1.4;
         }
 
-        /* --- Contenedor del Banner de Patrocinadores Integrado (Fijo al final del scroll) --- */
+        /* --- Contenedor del Banner de Patrocinadores Integrado --- */
         .gallery-footer-sponsors {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 30px 0 10px 0;
-            margin-top: 20px;
+            margin-top: auto; /* Empuja el banner al fondo real si hay poco contenido */
             border-top: 1px solid #dee2e6;
+            flex-shrink: 0;
         }
 
         .gallery-footer-sponsors img {
             max-width: 100%;
-            height: auto; /* Mantiene sus proporciones y tamaño original sin recortar */
+            height: auto;
             object-fit: contain;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
@@ -362,7 +369,6 @@
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Barra Superior -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -372,12 +378,10 @@
             </button>
         </div>
 
-        <!-- Banner Centralizado -->
         <div class="banner-container">
             <img src="Banner_Impulsa4.0_1.png" alt="Banner IMPULSA 4.0" class="project-banner">
         </div>
 
-        <!-- Enlace Web -->
         <div class="header-right">
             <a href="https://ccm-eleva.cl/mejoramiento-de-la-educacion/impulsa/" target="_blank" class="external-link-btn">
                 <span class="link-icon">🔗</span>
@@ -386,7 +390,6 @@
         </div>
     </header>
 
-    <!-- Menú Lateral -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-item active" onclick="switchPanel('dashboard-general', this)">
             📊 Dashboard General
@@ -399,21 +402,16 @@
         </div>
     </nav>
 
-    <!-- Visualizador de Contenidos -->
     <main class="main-content">
-        <!-- Power BI: Dashboard General -->
         <iframe id="dashboard-general" class="active" src="https://app.powerbi.com/view?r=eyJrIjoiNTg3YzQzNDQtOGZiMS00MWNiLWFkZDItYjVmOWNjOTJhYmQzIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true"></iframe>
 
-        <!-- Power BI: Planificación y Actividades -->
         <iframe id="panel-actividades" src="https://app.powerbi.com/view?r=eyJrIjoiZWRiMDVmMjYtZWJkZi00MGE2LWEzOWYtYzI0YzljMzUyM2FjIiwidCI6IjE2NWZlNzc0LTQwZjgtNDJjZS04ZDMzLThmZTI1Y2Q0MzY2MiJ9" allowFullScreen="true" title="IMPULSA4.0_Planificación"></iframe>
 
-        <!-- Sección Real de Registros Fotográficos -->
         <div id="panel-registros" class="gallery-container">
             <h2 class="gallery-title">📁 Banco de Registros - IMPULSA 4.0</h2>
             
             <div class="events-grid">
                 
-                <!-- EVENTO 1: Feria de Ciencias -->
                 <div class="event-card">
                     <div class="carousel-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
@@ -430,7 +428,6 @@
                     </div>
                 </div>
 
-                <!-- EVENTO 2: Habilitación Aulas -->
                 <div class="event-card">
                     <div class="carousel-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
@@ -450,7 +447,6 @@
                     </div>
                 </div>
 
-                <!-- EVENTO 3: Inauguración Calama -->
                 <div class="event-card">
                     <div class="carousel-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
@@ -469,7 +465,6 @@
                     </div>
                 </div>
 
-                <!-- EVENTO 4: Inauguración Taltal -->
                 <div class="event-card">
                     <div class="carousel-wrapper">
                         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
@@ -491,7 +486,6 @@
 
             </div>
 
-            <!-- NUEVO: Banner centrado, al fondo y sin flotar -->
             <div class="gallery-footer-sponsors">
                 <img src="Patrocinadores_Impulsa4.0.png" alt="Patrocinadores IMPULSA 4.0">
             </div>
